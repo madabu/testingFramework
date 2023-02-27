@@ -1,16 +1,24 @@
 package org.example;
 
-import PageObjects.HomePage;
-import PageObjects.Hybrid;
-import PageObjects.InPerson;
-import PageObjects.Virtual;
+import PageObjects.*;
 import io.cucumber.java.After;
+import io.cucumber.java.an.E;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class StepDefinitions {
@@ -21,12 +29,22 @@ public class StepDefinitions {
     private Hybrid hybrid;
     private InPerson inPerson;
 
+    private Fundamentals fundamentals;
+    private Enrollment enrollment;
+    private EnrollmentContactInfo enrollmentContactInfo;
+    private EnrollmentCourseOptions enrollmentCourseOptions;
+
     public StepDefinitions () {
         driver.manage().window().maximize();
         homePage = new HomePage(driver);
         virtual = new Virtual(driver);
         hybrid = new Hybrid(driver);
         inPerson = new InPerson(driver);
+        fundamentals = new Fundamentals(driver);
+        enrollment = new Enrollment(driver);
+        enrollmentContactInfo = new EnrollmentContactInfo(driver);
+        enrollmentCourseOptions = new EnrollmentCourseOptions(driver);
+
 
 
 
@@ -55,10 +73,63 @@ public class StepDefinitions {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/in_person.html");
     }
 
+    @Given("I am on the Fundamentals page")
+    public void iAmOnTheFundamentalsPage (){
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/fundamentals.html");
+    }
+
+    //??
+    @Given("I am on the first section of the Enrollment process")
+    public void iAmOnTheFirstSectionOfTheEnrollmentProccess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+    }
+
+    @Given("I am on the second section of the Enrollment process")
+    public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html?email=&phone-number=&country=&city=&post-code");
+        driver.findElement(By.cssSelector("body > div > div > section > div > form > div.step.step-1.active > button")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        driver.findElement(By.xpath("//*[@id='email']"));
+       //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='email']")));
+        Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
+
+//       driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+//        enrollment.clickOnNextButton();
+//
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//
+//        driver.findElement(By.id("email"));
+//
+//        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("email")));
+//        Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
+
+
+//---------------------------------------------------------------------------------
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//        Assert.assertTrue(enrollmentContactInfo.returnSecondSectionOfEnrollment().getAttribute("class").contains("active"));
+
+
+    }
+
+
+    @When("I click on the Start The Enrollment Button from the Home page")
+    public void iClickOnTheStartTheEnrollmentButtonFromTheHomePage () {
+        homePage.clickOnTheStartTheEnrollmentButton();
+    }
+
     @When("I write an email address such as {string}")
     public void iWriteAnEmailAddressSuchAs(String string) {
         homePage.writeEmailInEmailField(string);
 
+    }
+
+    @When("I leave the email field empty")
+    public void iLeaveTheEmailFieldEmpty () {
+        homePage.leaveEmailFieldEmpty();
     }
 
     @When("I click the submit button")
@@ -85,6 +156,12 @@ public class StepDefinitions {
         homePage.clickOnInPersonReadMoreButton();
     }
 
+    @When("I scroll to click on the Read More button from the Learn The Fundamentals Section")
+    public void iClickOnTheReadMoreButtonFromTheFundamentalsSection () {
+        Utils.scrollToElement(driver, homePage.getFundamentalsHeader());
+        homePage.clickOnFundamentalsReadMoreButton();
+    }
+
    @When("I click on the Return button from the Virtual page")
    public void iClickOnTheVirtualReturnButton (){
         virtual.iClickOnTheVirtualReturnButton();
@@ -98,6 +175,57 @@ public class StepDefinitions {
    @When("I click on the Return button from the In Person page")
    public void iClickOnTheInPersonReturnButton () {inPerson.IClickOnTheInPersonReturnButton();}
 
+    @When("I click on the Return button from the Fundamentals page")
+    public void iClickOnTheFundamentalsReturnButton () {fundamentals.iClickOnFundamentalsReturnButton();}
+
+    @When("I write in the First Name field")
+    public void writeInTheFirstNameField () {enrollment.writeInFirstNameField("Madalina");}
+
+    @When("I write in the Last Name field")
+    public void writeInTheLastNameField () {enrollment.writeInLastNameField("Albu");}
+
+    @When("I write in the Username field")
+    public void writeInTheUsernameField () {enrollment.writeInUsernameField("madaalbu27");}
+
+    @When("I write in the Password field")
+    public void writeInThePasswordField () {enrollment.writePassword("password123!");}
+
+    @When("I write in the Confirm Password field")
+    public void writeInTheConfirmPasswordField () {enrollment.writeToConfirmPassword("password123!");}
+
+    @When("I click on the Next Button from the First Enrollment section")
+    public void clickOnTheNextButtonFromTheFirstEnrollmentPage () {enrollment.clickOnNextButton();}
+
+    @When("I write in the Email field from the second section  of the Enrollment page")
+    public void writeInTheSecondSectionEmailField () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        enrollment.clickOnNextButton();
+
+        driver.findElement(By.id("email"));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
+        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");}
+
+    @When("I write in the Phone field")
+    public void writeInThePhoneField () {enrollmentContactInfo.writeInPhoneField("0723456789");}
+
+    @When("I write in the Country field")
+    public void writeInTheCountryField () {enrollmentContactInfo.writeInCountryField("Romania");}
+
+    @When("I write in the City field")
+    public void writeInTheCityField () {enrollmentContactInfo.writeInCityField("Brasov");}
+
+    @When("I write in the Post Code field")
+    public void writeInThePostCodeField () {enrollmentContactInfo.writeInPostCodeField("500000");}
+
+    @When("I click on the Next Button from the Second Enrollment section")
+    public void clickOnTheSecondSectionNextButton () {enrollmentContactInfo.clickOnSecondSectionNextButton();}
+
+    @When("I click on the Questions from the Nav Bar")
+    public void iClickOnTheQuestionsFromTheNavBar () {homePage.clickOnQuestionsFromNavBar();}
+
     @Then("The confirmation pop-up appears")
     public void theConfirmationPopUpAppears () {
         driver.switchTo().alert().accept();
@@ -109,6 +237,7 @@ public class StepDefinitions {
         homePage.getEmailField();
 
     }*/
+
 
     @Then("I am taken to the Virtual page")
     public void iAmTakenToTheVirtualPage () {
@@ -125,13 +254,46 @@ public class StepDefinitions {
         Assert.assertEquals("In Person", inPerson.returnInPersonHeaderText());
     }
 
+    @Then("I am taken to the Fundamentals page")
+    public void iAmTakenToTheFundamentalsPage () {Assert.assertEquals("Fundamentals page", fundamentals.returnFundamentalsHeader());}
+
     @Then("I am taken back to the Home page")
     public void iAmTakenBackToTheHomePage () {
-        Assert.assertEquals("Certified Software Tester", homePage.returnHomePageHeader());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        Assert.assertEquals("Software Testing Course", driver.getTitle());
+    }
+
+
+    @Then("A red border lines the email field disabling the user from submitting an empty field")
+    public void redBorderLinesEmptyEmailField () {
+        driver.findElement(By.xpath("/html/body/section[2]/div/div/div/button")).click();
+        Assert.assertTrue(homePage.getEmailField().getAttribute("class").contains("error"));
+
+    }
+    @Then ("I am taken to the Enrollment page")
+    public void iAmTakenToTheEnrollmentPage () { Assert.assertEquals("Software Testing | Enrollment", driver.getTitle());}
+
+    @Then("I am taken to the Contact Information page of the Enrollment section")
+    public void iAmTakenToTheContactInformationPageOfEnrollment () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
+
+    }
+
+    @Then("I am taken to the Course Options page of the Enrollment section")
+    public void iAmTakenToTheCourseOptionsPageOfEnrollment () {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        Assert.assertTrue(enrollmentCourseOptions.getCourseOptionsHeader().getAttribute("class").contains("section-header"));
+
+
+
+        //Assert.assertTrue(enrollmentCourseOptions.getCourseOptionsHeader().getAttribute("class").contains("section-header"));
     }
 
     @After
     public void cleanUp () {
         driver.quit();
     }
+
 }
