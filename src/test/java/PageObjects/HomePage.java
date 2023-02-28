@@ -68,6 +68,51 @@ public class HomePage {
     @FindBy (xpath = "//*[@id=\"learn-fundamentals\"]/div/div/div[2]/a")
     private WebElement fundamentalsReadMoreButton;
 
+    @FindBy (css = "h2.text-center.mb-4")
+    private WebElement frequentlyAskedQuestions;
+
+    public WebElement getFrequentlyAskedQuestions () {return frequentlyAskedQuestions;}
+
+//    @FindBy (id = "questions")
+//    private WebElement frequentlyAskedQuestions;
+
+//    public WebElement getFrequentlyAskedQuestions (){return frequentlyAskedQuestions;}
+
+    @FindBy (css = "button.accordion-button[data-bs-target='question-one']")
+    private WebElement questionOneButton;
+    public WebElement getQOneAccordionButton (){
+        return questionOneButton;
+    }
+
+    @FindBy (css = "button.accordion-button[data-bs-target='question-two']")
+    private WebElement questionTwoButton;
+    public WebElement getQTwoButtonAccordionButton (){
+        return questionTwoButton;
+    }
+
+    @FindBy (css = "button.accordion-button[data-bs-target='question-three']")
+    private WebElement questionThreeButton;
+    public WebElement getQThreeAccordionButton (){
+        return questionThreeButton;
+    }
+
+    @FindBy (css = "button.accordion-button[data-bs-target='question-four']")
+    private WebElement questionFourButton;
+    public WebElement getQFourAccordionButton (){
+        return questionFourButton;
+    }
+
+    @FindBy (css = "button.accordion-button[data-bs-target='question-five']")
+    private WebElement questionFiveButton;
+    public WebElement getQFiveAccordionButton (){
+        return questionFiveButton;
+    }
+
+    @FindBy (css = "div.accordion-body.collapse.show")
+    private WebElement accordionSampleTextBody;
+
+    public WebElement getAccordionSampleTextBody () {return accordionSampleTextBody;}
+
 
     public HomePage (WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -103,6 +148,12 @@ public class HomePage {
     }
 
     public void clickOnFundamentalsReadMoreButton () {this.fundamentalsReadMoreButton.click();}
+
+    public void clickOnQuestionOneButton () {this.questionOneButton.click();}
+    public void clickOnQuestionTwoButton () {this.questionTwoButton.click();}
+    public void clickOnQuestionThreeButton () {this.questionThreeButton.click();}
+    public void clickOnQuestionFourButton () {this.questionFourButton.click();}
+    public void clickOnQuestionFiveButton () {this.questionFiveButton.click();}
 
 
 

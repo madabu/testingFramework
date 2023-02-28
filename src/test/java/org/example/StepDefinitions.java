@@ -2,16 +2,12 @@ package org.example;
 
 import PageObjects.*;
 import io.cucumber.java.After;
-import io.cucumber.java.an.E;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -77,6 +73,17 @@ public class StepDefinitions {
     public void iAmOnTheFundamentalsPage (){
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/fundamentals.html");
     }
+
+    @Given("I am on the Frequently Asked Questions section of the Home page")
+    public void iAmOnTheFrequentlyAskedQuestionsSection () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/index.html");
+        homePage.clickOnQuestionsFromNavBar();
+
+        String faqText = homePage.getFrequentlyAskedQuestions().getText();
+
+        Assert.assertEquals("Frequently Asked Questions", faqText);
+    }
+
 
     //??
     @Given("I am on the first section of the Enrollment process")
@@ -177,6 +184,31 @@ public class StepDefinitions {
 
     @When("I click on the Return button from the Fundamentals page")
     public void iClickOnTheFundamentalsReturnButton () {fundamentals.iClickOnFundamentalsReturnButton();}
+
+    @When("I click on the {string} accordion button")
+    public void iClickOnTheAccordionButton (String question) {
+        switch (question) {
+            case "Where is your institution located?":
+                homePage.clickOnQuestionOneButton();
+                break;
+            case "How much does it cost to attend?":
+                homePage.clickOnQuestionTwoButton();
+                break;
+            case "What do I need to know before hand?":
+                homePage.clickOnQuestionThreeButton();
+                break;
+            case "How do I sign up?":
+                homePage.clickOnQuestionFourButton();
+                break;
+            case "Will your organization help me find a job?":
+                homePage.clickOnQuestionFiveButton();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid question: " + question);
+        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(homePage.getAccordionSampleTextBody()));
+    }
 
     @When("I write in the First Name field")
     public void writeInTheFirstNameField () {enrollment.writeInFirstNameField("Madalina");}
@@ -289,6 +321,15 @@ public class StepDefinitions {
 
 
         //Assert.assertTrue(enrollmentCourseOptions.getCourseOptionsHeader().getAttribute("class").contains("section-header"));
+    }
+
+    @Then("I am taken to the Frequently Asked Questions section from the Home page")
+    public void iAmTakenToTheFrequentlyAskedQuestionsSection () {
+        String currentUrl = driver.getCurrentUrl();
+        homePage.clickOnQuestionsFromNavBar();
+
+        Assert.assertTrue(currentUrl.contains("#questions"));
+        //assert currentUrl.contains("#questions");
     }
 
     @After

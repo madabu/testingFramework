@@ -72,10 +72,10 @@ Feature: Software Testing Course
     Given I am on the first section of the Enrollment process
     When I write in the First Name field
     And I write in the Last Name field
-    And I write in the Username field
-    And I write in the Password field
-    And I write in the Confirm Password field
-    And I click on the Next Button from the First Enrollment section
+    * I write in the Username field
+    * I write in the Password field
+    * I write in the Confirm Password field
+    * I click on the Next Button from the First Enrollment section
     Then I am taken to the Contact Information page of the Enrollment section
 
   Scenario: Positive #13 Second Enrollment Section
@@ -91,6 +91,30 @@ Feature: Software Testing Course
   Scenario: Questions
     Given I am on the homepage
     When I click on the Questions from the Nav Bar
+    Then I am taken to the Frequently Asked Questions section from the Home page
+
+  Scenario: pls send help
+    Given I am on the Frequently Asked Questions section of the Home page
+
+
+
+  Scenario Outline:  FAQ section
+    Given I am on the Frequently Asked Questions section of the Home page
+    When I click on the '<question>' accordion button
+    Then the '<question>' accordion body should be displayed
+    And the '<question>' accordion body text should be '<sample_text>'
+
+
+
+    Examples:
+    |question                                   |sample_text                                             |
+    |Where is your institution located?         |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |How much does it cost to attend?           |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |What do I need to know before hand?        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |How do I sign up?                          |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |Will your organization help me find a job? |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+
+
 
 
 
