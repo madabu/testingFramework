@@ -10,6 +10,13 @@ public class Enrollment {
     @FindBy (xpath = "/html/body/div/div/h2/text()[1]")
     private WebElement enrollmentHeader;
 
+    //Personal information header
+    @FindBy (css = ".step-1 .section-header")
+    private WebElement personalInformationHeader;
+    public WebElement getPersonalInformationHeader () {
+        return personalInformationHeader;
+    }
+
     //First Name
     @FindBy (xpath = "//*[@id=\"firstName\"]")
     private WebElement firstName;
@@ -46,10 +53,10 @@ public class Enrollment {
     }
 
     //Submit with Next button
-    @FindBy (xpath = "/html/body/div/div/section/div/form/div[1]/button")
+    @FindBy (css = ".step-1 .next-btn")
     private WebElement nextButton;
     public void clickOnNextButton () {
-        this.nextButton.submit();
+        this.nextButton.click();
     }
 
     public WebElement getEnrollmentHeader (){

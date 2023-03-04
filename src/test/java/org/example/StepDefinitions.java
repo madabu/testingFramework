@@ -13,8 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class StepDefinitions {
@@ -89,20 +88,43 @@ public class StepDefinitions {
     @Given("I am on the first section of the Enrollment process")
     public void iAmOnTheFirstSectionOfTheEnrollmentProccess () {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
-    }
-
-    @Given("I am on the second section of the Enrollment process")
-    public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html?email=&phone-number=&country=&city=&post-code");
-        driver.findElement(By.cssSelector("body > div > div > section > div > form > div.step.step-1.active > button")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.findElement(By.xpath("//*[@id='email']"));
-       //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='email']")));
-        Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
+        wait.until(ExpectedConditions.visibilityOf(enrollment.getPersonalInformationHeader()));
+        Assert.assertEquals("Personal information", enrollment.getPersonalInformationHeader().getText());
 
-//       driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+    }
+    @Given("I am on the second section of the Enrollment process")
+    public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        enrollment.writeInFirstNameField("Madalina");
+        enrollment.writeInLastNameField("Albu");
+        enrollment.writeInUsernameField("madaalbu");
+        enrollment.writePassword("password1!");
+        enrollment.writeToConfirmPassword("password1!");
+
+        enrollment.clickOnNextButton();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
+
+        Assert.assertEquals("Contact information",enrollmentContactInfo.getContactInformationHeader().getText());
+
+
+//    @Given("I am on the second section of the Enrollment process")
+//    public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
+//        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html?email=&phone-number=&country=&city=&post-code");
+//        driver.findElement(By.cssSelector("body > div > div > section > div > form > div.step.step-1.active > button")).click();
+//
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//        driver.findElement(By.xpath("//*[@id='email']"));
+//       //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='email']")));
+//        Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
+//
+////       driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
 //        enrollment.clickOnNextButton();
 //
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -229,16 +251,7 @@ public class StepDefinitions {
     public void clickOnTheNextButtonFromTheFirstEnrollmentPage () {enrollment.clickOnNextButton();}
 
     @When("I write in the Email field from the second section  of the Enrollment page")
-    public void writeInTheSecondSectionEmailField () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
-        enrollment.clickOnNextButton();
-
-        driver.findElement(By.id("email"));
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
-        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");}
+    public void writeInTheSecondSectionEmailField () {enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");}
 
     @When("I write in the Phone field")
     public void writeInThePhoneField () {enrollmentContactInfo.writeInPhoneField("0723456789");}
@@ -253,7 +266,7 @@ public class StepDefinitions {
     public void writeInThePostCodeField () {enrollmentContactInfo.writeInPostCodeField("500000");}
 
     @When("I click on the Next Button from the Second Enrollment section")
-    public void clickOnTheSecondSectionNextButton () {enrollmentContactInfo.clickOnSecondSectionNextButton();}
+    public void clickOnTheSecondSectionNextButton () {enrollmentContactInfo.clickOnNextButton2();}
 
     @When("I click on the Questions from the Nav Bar")
     public void iClickOnTheQuestionsFromTheNavBar () {homePage.clickOnQuestionsFromNavBar();}

@@ -82,10 +82,10 @@ Feature: Software Testing Course
     Given I am on the second section of the Enrollment process
     When I write in the Email field from the second section  of the Enrollment page
     And I write in the Phone field
-    And I write in the Country field
-    And I write in the City field
-    And I write in the Post Code field
-    And I click on the Next Button from the Second Enrollment section
+    * I write in the Country field
+    * I write in the City field
+    * I write in the Post Code field
+    * I click on the Next Button from the Second Enrollment section
     Then I am taken to the Course Options page of the Enrollment section
 
   Scenario: Questions

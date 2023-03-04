@@ -9,6 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class EnrollmentContactInfo {
 
+    //Contact information header
+    @FindBy (css = ".step-2 .section-header")
+    private WebElement contactInformationHeader;
+
+    public WebElement getContactInformationHeader () {
+        return contactInformationHeader;
+    }
+
     //Section2
     @FindBy (className = "step-2")
     private WebElement secondSectionOfEnrollment;
@@ -19,7 +27,7 @@ public class EnrollmentContactInfo {
 
 
     //Email
-    @FindBy (id = "email")
+    @FindBy (xpath = "//*[@id=\"email\"]")
     private WebElement contactInformationEmailField;
 
 
@@ -32,38 +40,38 @@ public class EnrollmentContactInfo {
     }
 
     //Phone
-    @FindBy (id = "phone")
+    @FindBy (xpath = "//*[@id=\"phone\"]")
     private WebElement phoneField;
     public void writeInPhoneField (String phoneNumber){
         this.phoneField.sendKeys(phoneNumber);
     }
 
     //Country
-    @FindBy (id = "country")
+    @FindBy (xpath = "//*[@id=\"country\"]")
     private WebElement countryField;
     public void writeInCountryField (String country){
         this.countryField.sendKeys(country);
     }
 
     //City
-    @FindBy (id = "city")
+    @FindBy (xpath = "//*[@id=\"city\"]")
     private WebElement cityField;
     public void writeInCityField (String city){
         this.cityField.sendKeys(city);
     }
 
     //Post code
-    @FindBy (id = "postCode")
+    @FindBy (xpath = "//*[@id=\"postCode\"]")
     private WebElement postCodeField;
     public void writeInPostCodeField (String postCode){
         this.postCodeField.sendKeys(postCode);
     }
 
     //Next Button from Second Section
-    @FindBy (xpath = "/html/body/div/div/section/div/form/div[2]/button[2]")
-    private WebElement nextButtonSecondSection;
-    public void clickOnSecondSectionNextButton (){
-        this.nextButtonSecondSection.submit();
+    @FindBy (css = ".step-2 .next-btn")
+    private WebElement nextButton;
+    public void clickOnNextButton2 () {
+        this.nextButton.click();
     }
 
     public EnrollmentContactInfo (WebDriver driver) {PageFactory.initElements(driver, this);}
