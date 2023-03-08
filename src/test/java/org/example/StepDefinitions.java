@@ -28,6 +28,7 @@ public class StepDefinitions {
     private Enrollment enrollment;
     private EnrollmentContactInfo enrollmentContactInfo;
     private EnrollmentCourseOptions enrollmentCourseOptions;
+    private EnrollmentPaymentInformation enrollmentPaymentInformation;
 
     public StepDefinitions () {
         driver.manage().window().maximize();
@@ -39,8 +40,7 @@ public class StepDefinitions {
         enrollment = new Enrollment(driver);
         enrollmentContactInfo = new EnrollmentContactInfo(driver);
         enrollmentCourseOptions = new EnrollmentCourseOptions(driver);
-
-
+        enrollmentPaymentInformation = new EnrollmentPaymentInformation(driver);
 
 
     }
@@ -111,6 +111,35 @@ public class StepDefinitions {
         wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
 
         Assert.assertEquals("Contact information",enrollmentContactInfo.getContactInformationHeader().getText());
+    }
+    @Given("I am on the third section of the Enrollment process")
+    public void iAmOnTheThirdSectionOfTheEnrollmentProcess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        enrollment.writeInFirstNameField("Madalina");
+        enrollment.writeInLastNameField("Albu");
+        enrollment.writeInUsernameField("madaalbu");
+        enrollment.writePassword("password1!");
+        enrollment.writeToConfirmPassword("password1!");
+
+        enrollment.clickOnNextButton();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
+
+        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
+        enrollmentContactInfo.writeInPhoneField("0712345678");
+        enrollmentContactInfo.writeInCountryField("Romania");
+        enrollmentContactInfo.writeInCityField("Brasov");
+        enrollmentContactInfo.writeInPostCodeField("123456");
+
+        enrollmentContactInfo.clickOnNextButton2();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
+
+        Assert.assertEquals("Course options",enrollmentCourseOptions.getCourseOptionsHeader().getText());
+
+    }
 
 
 //    @Given("I am on the second section of the Enrollment process")
@@ -142,7 +171,7 @@ public class StepDefinitions {
 //        Assert.assertTrue(enrollmentContactInfo.returnSecondSectionOfEnrollment().getAttribute("class").contains("active"));
 
 
-    }
+
 
 
     @When("I click on the Start The Enrollment Button from the Home page")
@@ -228,8 +257,8 @@ public class StepDefinitions {
             default:
                 throw new IllegalArgumentException("Invalid question: " + question);
         }
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(homePage.getAccordionSampleTextBody()));
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //wait.until(ExpectedConditions.visibilityOf(homePage.getAccordionSampleTextBody()));
     }
 
     @When("I write in the First Name field")
@@ -267,6 +296,12 @@ public class StepDefinitions {
 
     @When("I click on the Next Button from the Second Enrollment section")
     public void clickOnTheSecondSectionNextButton () {enrollmentContactInfo.clickOnNextButton2();}
+
+    @When("I choose the first course option from the Course Options section of the Enrollment page")
+    public void chooseFirstCourseOption () {enrollmentCourseOptions.clickOnFirstRadioButton1();}
+
+    @When("I click on the Next Button from the Third Enrollment section")
+    public void clickOnTheThirdSectionNextButton () {enrollmentCourseOptions.clickOnNextButton3();}
 
     @When("I click on the Questions from the Nav Bar")
     public void iClickOnTheQuestionsFromTheNavBar () {homePage.clickOnQuestionsFromNavBar();}
@@ -319,21 +354,27 @@ public class StepDefinitions {
     @Then ("I am taken to the Enrollment page")
     public void iAmTakenToTheEnrollmentPage () { Assert.assertEquals("Software Testing | Enrollment", driver.getTitle());}
 
-    @Then("I am taken to the Contact Information page of the Enrollment section")
-    public void iAmTakenToTheContactInformationPageOfEnrollment () {
+    @Then("I am taken to the Contact Information section of the Enrollment page")
+    public void iAmTakenToTheContactInformationSectionOfEnrollment () {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Assert.assertTrue(enrollmentContactInfo.returnContactInformationEmailField().getAttribute("id").contains("email"));
 
     }
-
-    @Then("I am taken to the Course Options page of the Enrollment section")
-    public void iAmTakenToTheCourseOptionsPageOfEnrollment () {
+    //?
+    @Then("I am taken to the Course Options section of the Enrollment page")
+    public void iAmTakenToTheCourseOptionsSectionOfEnrollment () {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
         Assert.assertTrue(enrollmentCourseOptions.getCourseOptionsHeader().getAttribute("class").contains("section-header"));
 
 
 
         //Assert.assertTrue(enrollmentCourseOptions.getCourseOptionsHeader().getAttribute("class").contains("section-header"));
+    }
+
+    @Then("I am taken to the Payment Information section of the Enrollment page")
+    public void iAmTakenToThePaymentInformationSectionOfEnrollment () {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        Assert.assertEquals("Payment information",enrollmentPaymentInformation.getPaymentInformationHeader().getText());
     }
 
     @Then("I am taken to the Frequently Asked Questions section from the Home page")
