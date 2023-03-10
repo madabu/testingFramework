@@ -85,7 +85,7 @@ public class StepDefinitions {
 
 
     //??
-    @Given("I am on the first section of the Enrollment process")
+    @Given("I am on the First section of the Enrollment process")
     public void iAmOnTheFirstSectionOfTheEnrollmentProccess () {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
 
@@ -95,7 +95,7 @@ public class StepDefinitions {
         Assert.assertEquals("Personal information", enrollment.getPersonalInformationHeader().getText());
 
     }
-    @Given("I am on the second section of the Enrollment process")
+    @Given("I am on the Second section of the Enrollment process")
     public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -112,7 +112,7 @@ public class StepDefinitions {
 
         Assert.assertEquals("Contact information",enrollmentContactInfo.getContactInformationHeader().getText());
     }
-    @Given("I am on the third section of the Enrollment process")
+    @Given("I am on the Third section of the Enrollment process")
     public void iAmOnTheThirdSectionOfTheEnrollmentProcess () {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -139,6 +139,39 @@ public class StepDefinitions {
 
         Assert.assertEquals("Course options",enrollmentCourseOptions.getCourseOptionsHeader().getText());
 
+    }
+
+    @Given("I am on the Fourth section of the Enrollment process")
+    public void iAmOnTheFourthSectionOfTheEnrollmentProcess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        enrollment.writeInFirstNameField("Madalina");
+        enrollment.writeInLastNameField("Albu");
+        enrollment.writeInUsernameField("madaalbu");
+        enrollment.writePassword("password1!");
+        enrollment.writeToConfirmPassword("password1!");
+
+        enrollment.clickOnNextButton();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
+
+        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
+        enrollmentContactInfo.writeInPhoneField("0712345678");
+        enrollmentContactInfo.writeInCountryField("Romania");
+        enrollmentContactInfo.writeInCityField("Brasov");
+        enrollmentContactInfo.writeInPostCodeField("123456");
+
+        enrollmentContactInfo.clickOnNextButton2();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
+
+        enrollmentCourseOptions.clickOnFirstRadioButton1();
+        enrollmentCourseOptions.clickOnNextButton3();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentPaymentInformation.getPaymentInformationHeader()));
+
+        Assert.assertEquals("Payment information",enrollmentPaymentInformation.getPaymentInformationHeader().getText());
     }
 
 
@@ -302,6 +335,28 @@ public class StepDefinitions {
 
     @When("I click on the Next Button from the Third Enrollment section")
     public void clickOnTheThirdSectionNextButton () {enrollmentCourseOptions.clickOnNextButton3();}
+
+    @When("I write in the Card Holder Name field from the Fourth Enrollment section")
+    public void writeInTheCardHolderNameField () {enrollmentPaymentInformation.writeInCardHolderNameField("Madalina Albu");}
+
+    @When("I write in the Card Number field from the Fourth Enrollment section")
+    public void writeInTheCardNumberField () {enrollmentPaymentInformation.writeInCardNumberField("1234-5678-9012-3456");}
+
+    @When("I write in the CVC field from the Fourth Enrollment section")
+    public void writeInTheCVCField () {enrollmentPaymentInformation.writeInCVCField("123");}
+
+    @When("I select the {string} Expiry Month from the Dropdown menu from the Fourth Enrollment section")
+    public void selectCardExpirationMonth (String month) {
+        WebElement dropdown = enrollmentPaymentInformation.getCardExpirationMonth();
+        enrollmentPaymentInformation.selectOptionFromDropdown(dropdown, month);
+    }
+    @When("I select the {string} Expiry Year from the Dropdown menu from the Fourth Enrollment section")
+    public void selectCardExpirationYear (String year) {
+        WebElement dropdown = enrollmentPaymentInformation.getCardExpirationYear();
+        enrollmentPaymentInformation.selectOptionFromDropdown(dropdown, year);
+    }
+    @When("I click on the Next Button from the Fourth Enrollment Section")
+    public void clickOnFourthSectionNextButton () {enrollmentPaymentInformation.clickOnNextButton4();}
 
     @When("I click on the Questions from the Nav Bar")
     public void iClickOnTheQuestionsFromTheNavBar () {homePage.clickOnQuestionsFromNavBar();}

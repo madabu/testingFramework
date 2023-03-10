@@ -75,7 +75,7 @@ Feature: Software Testing Course
     Then I am taken to the Enrollment page
 
   Scenario: Positive #12 First Enrollment Section - Personal information
-    Given I am on the first section of the Enrollment process
+    Given I am on the First section of the Enrollment process
     When I write in the First Name field
     And I write in the Last Name field
     * I write in the Username field
@@ -85,7 +85,7 @@ Feature: Software Testing Course
     Then I am taken to the Contact Information section of the Enrollment page
 
   Scenario: Positive #13 Second Enrollment Section - Contact information
-    Given I am on the second section of the Enrollment process
+    Given I am on the Second section of the Enrollment process
     When I write in the Email field from the second section  of the Enrollment page
     And I write in the Phone field
     * I write in the Country field
@@ -95,10 +95,19 @@ Feature: Software Testing Course
     Then I am taken to the Course Options section of the Enrollment page
 
   Scenario: Positive #14 Third Enrollment Section - Course options
-    Given I am on the third section of the Enrollment process
+    Given I am on the Third section of the Enrollment process
     When I choose the first course option from the Course Options section of the Enrollment page
     And I click on the Next Button from the Third Enrollment section
     Then I am taken to the Payment Information section of the Enrollment page
+
+  Scenario: Positive #15 Fourth Enrollment Section - Payment information
+    Given I am on the Fourth section of the Enrollment process
+    When I write in the Card Holder Name field from the Fourth Enrollment section
+    And I write in the Card Number field from the Fourth Enrollment section
+    * I write in the CVC field from the Fourth Enrollment section
+    * I select the "March" Expiry Month from the Dropdown menu from the Fourth Enrollment section
+    * I select the "2024" Expiry Year from the Dropdown menu from the Fourth Enrollment section
+    * I click on the Next Button from the Fourth Enrollment Section
 
 
 
