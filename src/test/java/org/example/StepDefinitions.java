@@ -3,12 +3,14 @@ package org.example;
 import PageObjects.*;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
+import io.cucumber.java.eo.Se;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -29,6 +31,7 @@ public class StepDefinitions {
     private EnrollmentContactInfo enrollmentContactInfo;
     private EnrollmentCourseOptions enrollmentCourseOptions;
     private EnrollmentPaymentInformation enrollmentPaymentInformation;
+    private EnrollmentSuccess enrollmentSuccess;
 
     public StepDefinitions () {
         driver.manage().window().maximize();
@@ -41,6 +44,7 @@ public class StepDefinitions {
         enrollmentContactInfo = new EnrollmentContactInfo(driver);
         enrollmentCourseOptions = new EnrollmentCourseOptions(driver);
         enrollmentPaymentInformation = new EnrollmentPaymentInformation(driver);
+        enrollmentSuccess = new EnrollmentSuccess(driver);
 
 
     }
@@ -77,6 +81,9 @@ public class StepDefinitions {
     public void iAmOnTheFrequentlyAskedQuestionsSection () {
         driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/index.html");
         homePage.clickOnQuestionsFromNavBar();
+
+        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
+        //Utils.scrollToElement(driver, homePage.getSeleniumImage());
 
         String faqText = homePage.getFrequentlyAskedQuestions().getText();
 
@@ -174,6 +181,56 @@ public class StepDefinitions {
         Assert.assertEquals("Payment information",enrollmentPaymentInformation.getPaymentInformationHeader().getText());
     }
 
+    @Given("I am on the Fifth and last section of the Enrollment process")
+    public void iAmOnTheFifthSectionOfTheEnrollmentProcess () {
+        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        enrollment.writeInFirstNameField("Madalina");
+        enrollment.writeInLastNameField("Albu");
+        enrollment.writeInUsernameField("madaalbu");
+        enrollment.writePassword("password1!");
+        enrollment.writeToConfirmPassword("password1!");
+
+        enrollment.clickOnNextButton();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
+
+        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
+        enrollmentContactInfo.writeInPhoneField("0712345678");
+        enrollmentContactInfo.writeInCountryField("Romania");
+        enrollmentContactInfo.writeInCityField("Brasov");
+        enrollmentContactInfo.writeInPostCodeField("123456");
+
+        enrollmentContactInfo.clickOnNextButton2();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
+
+        enrollmentCourseOptions.clickOnFirstRadioButton1();
+        enrollmentCourseOptions.clickOnNextButton3();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentPaymentInformation.getPaymentInformationHeader()));
+
+        enrollmentPaymentInformation.writeInCardHolderNameField("Madalina");
+        enrollmentPaymentInformation.writeInCardNumberField("1234-5678-9123-4569");
+        enrollmentPaymentInformation.writeInCVCField("123");
+        Select select = new Select(driver.findElement(By.cssSelector("select#month.list-dt[name='expmonth']")));
+        select.selectByVisibleText("March");
+
+        Select select1 = new Select(driver.findElement(By.cssSelector("select#year.list-dt[name='expyear'")));
+        select1.selectByVisibleText("2024");
+        enrollmentPaymentInformation.clickOnNextButton4();
+
+        wait.until(ExpectedConditions.visibilityOf(enrollmentSuccess.getSuccessHeader()));
+        Assert.assertEquals("Success!",enrollmentSuccess.getSuccessHeader().getText());
+
+//        WebElement dropdown = enrollmentPaymentInformation.getCardExpirationMonth();
+//        enrollmentPaymentInformation.selectOptionFromDropdown(dropdown, month);
+//        enrollmentPaymentInformation.selectOptionFromDropdown(dropdown, year);
+
+
+    }
+
 
 //    @Given("I am on the second section of the Enrollment process")
 //    public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
@@ -202,7 +259,6 @@ public class StepDefinitions {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //
 //        Assert.assertTrue(enrollmentContactInfo.returnSecondSectionOfEnrollment().getAttribute("class").contains("active"));
-
 
 
 
@@ -269,29 +325,50 @@ public class StepDefinitions {
     @When("I click on the Return button from the Fundamentals page")
     public void iClickOnTheFundamentalsReturnButton () {fundamentals.iClickOnFundamentalsReturnButton();}
 
+//    @When("I click on the {string} accordion button")
+//    public void iClickOnTheFirstAccordionButton (){
+//        homePage.clickOnQuestionOneButton();
+//    }
+
+//    @When("I click on the {string} accordion button")
+//    public void iClickOnTheAccordionButton (String question) {
+//        switch (question) {
+//            case "Where is your institution located?":
+//                homePage.clickOnQuestionOneButton();
+//                break;
+//            case "How much does it cost to attend?":
+//                homePage.clickOnQuestionTwoButton();
+//                break;
+//            case "What do I need to know before hand?":
+//                homePage.clickOnQuestionThreeButton();
+//                break;
+//            case "How do I sign up?":
+//                homePage.clickOnQuestionFourButton();
+//                break;
+//            case "Will your organization help me find a job?":
+//                homePage.clickOnQuestionFiveButton();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid question: " + question);
+//        }
+//        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        //wait.until(ExpectedConditions.visibilityOf(homePage.getAccordionSampleTextBody()));
+//    }
+
     @When("I click on the {string} accordion button")
-    public void iClickOnTheAccordionButton (String question) {
-        switch (question) {
-            case "Where is your institution located?":
-                homePage.clickOnQuestionOneButton();
-                break;
-            case "How much does it cost to attend?":
-                homePage.clickOnQuestionTwoButton();
-                break;
-            case "What do I need to know before hand?":
-                homePage.clickOnQuestionThreeButton();
-                break;
-            case "How do I sign up?":
-                homePage.clickOnQuestionFourButton();
-                break;
-            case "Will your organization help me find a job?":
-                homePage.clickOnQuestionFiveButton();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid question: " + question);
-        }
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        //wait.until(ExpectedConditions.visibilityOf(homePage.getAccordionSampleTextBody()));
+    public void iClickOnTheQuestionAccordionButton(String question) {
+        homePage.clickOnQuestionsFromNavBar();
+        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-one']")));
+
+
+        String xpath = String.format("//button[@data-bs-target='#question-%s']", question);
+        WebElement accordionButton = driver.findElement(By.xpath(xpath));
+        accordionButton.click();
+        //"question-" + one "']"
+
     }
 
     @When("I write in the First Name field")
@@ -357,6 +434,11 @@ public class StepDefinitions {
     }
     @When("I click on the Next Button from the Fourth Enrollment Section")
     public void clickOnFourthSectionNextButton () {enrollmentPaymentInformation.clickOnNextButton4();}
+
+    @When("I click on the Return to homepage button from the last Enrollment section")
+    public void clickOnTheReturnToHomepageButtonFromTheEnrollmentPage () {
+        enrollmentSuccess.clickOnReturnToHomepageButton();
+    }
 
     @When("I click on the Questions from the Nav Bar")
     public void iClickOnTheQuestionsFromTheNavBar () {homePage.clickOnQuestionsFromNavBar();}
@@ -432,6 +514,12 @@ public class StepDefinitions {
         Assert.assertEquals("Payment information",enrollmentPaymentInformation.getPaymentInformationHeader().getText());
     }
 
+    @Then("I am taken to the confirmation section from the Enrollment page")
+    public void iAmTakenToTheSuccessSectionOfEnrollment () {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        Assert.assertEquals("Success!",enrollmentSuccess.getSuccessHeader().getText());
+    }
+
     @Then("I am taken to the Frequently Asked Questions section from the Home page")
     public void iAmTakenToTheFrequentlyAskedQuestionsSection () {
         String currentUrl = driver.getCurrentUrl();
@@ -441,9 +529,40 @@ public class StepDefinitions {
         //assert currentUrl.contains("#questions");
     }
 
+    @Then("the {string} accordion body should be displayed")
+    public void theQuestionAccordionBodyShouldBeDisplayed(String question) {
+        homePage.clickOnQuestionsFromNavBar();
+        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-one']")));
+
+        //Assert.assertTrue(homePage.getQuestionOneButton().getAttribute("data-bs-target=#question-one").contains("#question-one"));
+        homePage.clickOnQuestionOneButton();
+
+        Assert.assertTrue(homePage.getAccordionSampleTextBody(question).isDisplayed());
+
+    }
+    @Then("the {string} accordion body text should be {string}")
+    public void theQuestionAccordionBodyTextShouldBeSample_text(String question, String sample_text) {
+        homePage.clickOnQuestionsFromNavBar();
+        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
+
+        homePage.clickOnQuestionOneButton();
+
+        WebElement body = homePage.getAccordionSampleTextBody(question);
+
+
+
+
+
+    }
+
     @After
     public void cleanUp () {
         driver.quit();
     }
+
+
 
 }

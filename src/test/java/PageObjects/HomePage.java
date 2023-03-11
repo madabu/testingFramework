@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -68,6 +69,10 @@ public class HomePage {
     @FindBy (xpath = "//*[@id=\"learn-fundamentals\"]/div/div/div[2]/a")
     private WebElement fundamentalsReadMoreButton;
 
+    @FindBy (xpath = "//*[@id=\"learn-selenium\"]/div/div/div[2]/img")
+    private WebElement seleniumImage;
+    public WebElement getSeleniumImage () {return seleniumImage;}
+
     @FindBy (css = "h2.text-center.mb-4")
     private WebElement frequentlyAskedQuestions;
 
@@ -78,40 +83,38 @@ public class HomePage {
 
 //    public WebElement getFrequentlyAskedQuestions (){return frequentlyAskedQuestions;}
 
-    @FindBy (css = "button.accordion-button[data-bs-target='question-one']")
+    @FindBy (xpath = "//button[@data-bs-target='#question-one']")
     private WebElement questionOneButton;
-    public WebElement getQOneAccordionButton (){
-        return questionOneButton;
-    }
+    public WebElement getQuestionOneButton () {return questionOneButton;}
 
-    @FindBy (css = "button.accordion-button[data-bs-target='question-two']")
+    @FindBy (xpath = "//button[@data-bs-target='#question-two']")
     private WebElement questionTwoButton;
     public WebElement getQTwoButtonAccordionButton (){
         return questionTwoButton;
     }
 
-    @FindBy (css = "button.accordion-button[data-bs-target='question-three']")
+    @FindBy (xpath = "//button[@data-bs-target='#question-three']")
     private WebElement questionThreeButton;
     public WebElement getQThreeAccordionButton (){
         return questionThreeButton;
     }
 
-    @FindBy (css = "button.accordion-button[data-bs-target='question-four']")
+    @FindBy (xpath = "//button[@data-bs-target='#question-four']")
     private WebElement questionFourButton;
     public WebElement getQFourAccordionButton (){
         return questionFourButton;
     }
 
-    @FindBy (css = "button.accordion-button[data-bs-target='question-five']")
+    @FindBy (xpath = "//button[@data-bs-target='#question-five']")
     private WebElement questionFiveButton;
     public WebElement getQFiveAccordionButton (){
         return questionFiveButton;
     }
 
-    @FindBy (css = "div.accordion-body.collapse.show")
+    @FindBy (xpath = "//following-sibling::div[@class='accordion-body']")
     private WebElement accordionSampleTextBody;
 
-    public WebElement getAccordionSampleTextBody () {return accordionSampleTextBody;}
+    public WebElement getAccordionSampleTextBody (String sampleText) {return accordionSampleTextBody;}
 
 
     public HomePage (WebDriver driver) {

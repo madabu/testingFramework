@@ -108,25 +108,29 @@ Feature: Software Testing Course
     * I select the "March" Expiry Month from the Dropdown menu from the Fourth Enrollment section
     * I select the "2024" Expiry Year from the Dropdown menu from the Fourth Enrollment section
     * I click on the Next Button from the Fourth Enrollment Section
+    Then I am taken to the confirmation section from the Enrollment page
 
-
+  Scenario: Positive #16 Fifth Enrollment Section - Success!
+    Given I am on the Fifth and last section of the Enrollment process
+    And I click on the Return to homepage button from the last Enrollment section
+    Then I am taken back to the Home page
 
   Scenario: pls send help
     Given I am on the Frequently Asked Questions section of the Home page
 
-#  Scenario Outline:  FAQ section
-#    Given I am on the Frequently Asked Questions section of the Home page
-#    When I click on the '<question>' accordion button
-#    Then the '<question>' accordion body should be displayed
-#    And the '<question>' accordion body text should be '<sample_text>'
-#
-#    Examples:
-#    |question                                   |sample_text                                             |
-#    |Where is your institution located?         |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-#    |How much does it cost to attend?           |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-#    |What do I need to know before hand?        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-#    |How do I sign up?                          |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-#    |Will your organization help me find a job? |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+  Scenario Outline:  FAQ section
+    Given I am on the Frequently Asked Questions section of the Home page
+    When I click on the '<question>' accordion button
+    Then the '<question>' accordion body should be displayed
+#    Then the '<question>' accordion body text should be '<sample_text>'
+
+    Examples:
+    |question                                   |sample_text                                             |
+    |one                                        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |two                                        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |three                                      |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |four                                       |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |five                                       |Lorem ipsum dolor sit amet consectetur adipisicing elit |
 
 
 

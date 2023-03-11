@@ -59,6 +59,10 @@ public class EnrollmentPaymentInformation {
         Select select = new Select(dropdown);
         select.selectByVisibleText(optionText);
     }
+    public void selectOptionFromDropdown2 (WebElement dropdown2, String optionText2) {
+        Select select = new Select(dropdown2);
+        select.selectByVisibleText(optionText2);
+    }
 
     public EnrollmentPaymentInformation (WebDriver driver) {
         PageFactory.initElements(driver, this);
