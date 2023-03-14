@@ -115,9 +115,6 @@ Feature: Software Testing Course
     And I click on the Return to homepage button from the last Enrollment section
     Then I am taken back to the Home page
 
-  Scenario: pls send help
-    Given I am on the Frequently Asked Questions section of the Home page
-
   Scenario Outline:  FAQ section
     Given I am on the Frequently Asked Questions section of the Home page
     When I click on the '<question>' accordion button

@@ -579,22 +579,19 @@ public class StepDefinitions {
     }
     @Then("the {string} accordion body text should be {string}")
     public void theQuestionAccordionBodyTextShouldBeSample_text(String question, String sample_text) {
-        homePage.clickOnQuestionsFromNavBar();
-        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
+//        homePage.clickOnQuestionsFromNavBar();
+//        Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
 
-        WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + question + "')]"));
-        WebElement body = button.findElement(By.xpath("./following-sibling::div"));
-        WebElement text = body.findElement(By.xpath(".//p[contains(text(), '" + sample_text + "')]"));
+//        String buttonXpath = String.format("//button[@data-bs-target='#%s']", question);
+//        WebElement button = driver.findElement(By.xpath(buttonXpath));
+//        wait.until(ExpectedConditions.visibilityOf(button));
+//        button.click();
 
-        Assert.assertTrue(text.isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        String bodyXpath = String.format("//div[@id='%s'][@class='accordion-collapse collapse show']", question);
+        WebElement body = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(bodyXpath)));
 
-        button.click();
-
-
-
-
-
-
+        Assert.assertTrue(body.getText().contains(sample_text));
 
 
     }
