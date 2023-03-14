@@ -360,13 +360,27 @@ public class StepDefinitions {
         homePage.clickOnQuestionsFromNavBar();
         Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-one']")));
+//        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-']")));
+//        WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + question + "')]"));
+//        WebElement button = driver.findElement(By.xpath("//button[@class='accordion-button collapsed' and starts-with(@data-bs-target, '" + question + "')]]"));
+//        WebElement button = driver.findElement(By.xpath("//button[contains(text(),'" + question + "')][@data-bs-target]"));
+//        WebElement button = driver.findElement(By.xpath("//button[@data-bs-target='#" + question + "']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        String buttonXpath = String.format("//button[@data-bs-target='#%s']", question);
+        WebElement button = driver.findElement(By.xpath(buttonXpath));
+        wait.until(ExpectedConditions.visibilityOf(button));
+        button.click();
 
 
-        String xpath = String.format("//button[@data-bs-target='#question-%s']", question);
-        WebElement accordionButton = driver.findElement(By.xpath(xpath));
-        accordionButton.click();
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
+        String bodyXpath = String.format("//div[@id='%s'][@class='accordion-collapse collapse show']", question);
+        WebElement body = wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(bodyXpath)));
+
+        Assert.assertTrue(body.getAttribute("class").contains("show"));
+
+
+
         //"question-" + one "']"
 
     }
@@ -534,13 +548,33 @@ public class StepDefinitions {
         homePage.clickOnQuestionsFromNavBar();
         Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
 
+//        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-one']")));
+
+//        Assert.assertTrue(homePage.getAccordionSampleTextBody().getAttribute("data-bs-target=#question-one").contains("#question-one"));
+//        homePage.clickOnQuestionOneButton();
+//
+//        Assert.assertTrue(homePage.getAccordionSampleTextBody(question).isDisplayed());
+        WebElement button = driver.findElement(By.xpath("//button[@class='accordion-button collapsed' and starts-with(@data-bs-target, '" + question + "')]]"));
+        button.click();
+
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-bs-target='#question-one']")));
+//        String target = button.getAttribute("data-bs-target");
+        String bodyXpath = String.format("//button[@class='accordion-button collapsed' and starts-with(@data-bs-target, '%s')]/following-sibling::div[@class='accordion-collapse collapse show']/div[@class='accordion-body']", question);
+//        WebDriverWait wait2 = new WebDriverWait(driver,Duration.ofSeconds(5));
+//        WebElement body = wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(bodyXpath)));
+        WebElement body = driver.findElement(By.xpath(bodyXpath));
 
-        //Assert.assertTrue(homePage.getQuestionOneButton().getAttribute("data-bs-target=#question-one").contains("#question-one"));
-        homePage.clickOnQuestionOneButton();
+        Assert.assertTrue(body.getAttribute("class").contains("show"));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        Assert.assertTrue(homePage.getAccordionSampleTextBody(question).isDisplayed());
+//        WebElement body = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='accordion-collapse collapse show']")));
+
+        //WebElement body = homePage.getAccordionSampleTextBody(button);
+
+        //Assert.assertTrue(body.isDisplayed());
+
+
 
     }
     @Then("the {string} accordion body text should be {string}")
@@ -548,9 +582,16 @@ public class StepDefinitions {
         homePage.clickOnQuestionsFromNavBar();
         Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
 
-        homePage.clickOnQuestionOneButton();
+        WebElement button = driver.findElement(By.xpath("//button[contains(text(), '" + question + "')]"));
+        WebElement body = button.findElement(By.xpath("./following-sibling::div"));
+        WebElement text = body.findElement(By.xpath(".//p[contains(text(), '" + sample_text + "')]"));
 
-        WebElement body = homePage.getAccordionSampleTextBody(question);
+        Assert.assertTrue(text.isDisplayed());
+
+        button.click();
+
+
+
 
 
 

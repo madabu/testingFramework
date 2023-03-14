@@ -121,16 +121,15 @@ Feature: Software Testing Course
   Scenario Outline:  FAQ section
     Given I am on the Frequently Asked Questions section of the Home page
     When I click on the '<question>' accordion button
-    Then the '<question>' accordion body should be displayed
-#    Then the '<question>' accordion body text should be '<sample_text>'
+    Then the '<question>' accordion body text should be '<sample_text>'
 
     Examples:
-    |question                                   |sample_text                                             |
-    |one                                        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-    |two                                        |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-    |three                                      |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-    |four                                       |Lorem ipsum dolor sit amet consectetur adipisicing elit |
-    |five                                       |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    |question                                                                       |sample_text                                             |
+    | question-one                                                                  |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    | question-two                                                                  |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    | question-three                                                                |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    | question-four                                                                 |Lorem ipsum dolor sit amet consectetur adipisicing elit |
+    | question-five                                                                 |Lorem ipsum dolor sit amet consectetur adipisicing elit |
 
 
 

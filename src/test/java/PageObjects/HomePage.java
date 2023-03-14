@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -111,11 +110,10 @@ public class HomePage {
         return questionFiveButton;
     }
 
-    @FindBy (xpath = "//following-sibling::div[@class='accordion-body']")
+    @FindBy (xpath = ".//div[@class='accordion-item']//following-sibling::div[@class='accordion-body']")
     private WebElement accordionSampleTextBody;
 
-    public WebElement getAccordionSampleTextBody (String sampleText) {return accordionSampleTextBody;}
-
+    public WebElement getAccordionSampleTextBody (WebElement button) {return accordionSampleTextBody;}
 
     public HomePage (WebDriver driver) {
         PageFactory.initElements(driver, this);
