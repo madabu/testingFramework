@@ -55,7 +55,7 @@ public class StepDefinitions {
 
 
     }
-    //Webscraping
+    
 
     @Given ("I am on the homepage")
     public void iAmOnTheHomePage () {
