@@ -58,6 +58,7 @@ public class EnrollmentPaymentInformation {
     public void selectOptionFromDropdown (WebElement dropdown, String optionText) {
         Select select = new Select(dropdown);
         select.selectByVisibleText(optionText);
+
     }
     public void selectOptionFromDropdown2 (WebElement dropdown2, String optionText2) {
         Select select = new Select(dropdown2);

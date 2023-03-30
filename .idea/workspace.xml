@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b5798bf-965a-4b9d-a115-711e8416a272" name="Changes" comment="Working on Scenario Outline for FAQ section">
+    <list default="true" id="0b5798bf-965a-4b9d-a115-711e8416a272" name="Changes" comment="Finished FAQ scenario outline">
+      <change afterPath="$PROJECT_DIR$/geckodriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PageObjects/EnrollmentCourseOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PageObjects/EnrollmentCourseOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PageObjects/EnrollmentPaymentInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PageObjects/EnrollmentPaymentInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PageObjects/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PageObjects/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PageObjects/Hybrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PageObjects/Hybrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/StepDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/StepDefinitions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +52,25 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Cucumber Java.Scenario: FAQ section">
+  <component name="RunManager" selected="Cucumber Java.Scenario: Positive #13 Second Enrollment Section - Contact information">
+    <configuration name="Feature: example" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="testingFrameworkProject" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: example" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Scenario: FAQ section" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
@@ -68,15 +91,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Positive #14 Third Enrollment Section - Course options" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Negative #2 - Newsletter Email" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
       <option name="GLUE" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="testingFrameworkProject" />
-      <option name="NAME_FILTER" value="^Positive \#14 Third Enrollment Section \- Course options$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Positive \#14 Third Enrollment Section \- Course options$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Positive #14 Third Enrollment Section - Course options" />
+      <option name="NAME_FILTER" value="^Negative \#2 \- Newsletter Email$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Negative \#2 \- Newsletter Email$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Negative #2 - Newsletter Email" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -88,15 +111,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Positive #15 Fourth Enrollment Section - Payment information" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Positive #1 - Newsletter Email" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
       <option name="GLUE" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="testingFrameworkProject" />
-      <option name="NAME_FILTER" value="^Positive \#15 Fourth Enrollment Section \- Payment information$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Positive \#15 Fourth Enrollment Section \- Payment information$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Positive #15 Fourth Enrollment Section - Payment information" />
+      <option name="NAME_FILTER" value="^Positive \#1 \- Newsletter Email$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Positive \#1 \- Newsletter Email$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Positive #1 - Newsletter Email" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -108,35 +131,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Positive #16 Fifth Enrollment Section - Success!" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Positive #13 Second Enrollment Section - Contact information" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
       <option name="GLUE" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="testingFrameworkProject" />
-      <option name="NAME_FILTER" value="^Positive \#16 Fifth Enrollment Section \- Success\!$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Positive \#16 Fifth Enrollment Section \- Success\!$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Positive #16 Fifth Enrollment Section - Success!" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.cucumber.core.cli.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Scenario: pls send help" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/org/example/example.feature" />
-      <option name="GLUE" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
-      <module name="testingFrameworkProject" />
-      <option name="NAME_FILTER" value="^pls send help$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^pls send help$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: pls send help" />
+      <option name="NAME_FILTER" value="^Positive \#13 Second Enrollment Section \- Contact information$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Positive \#13 Second Enrollment Section \- Contact information$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Positive #13 Second Enrollment Section - Contact information" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -150,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cucumber Java.Scenario: Positive #13 Second Enrollment Section - Contact information" />
         <item itemvalue="Cucumber Java.Scenario: FAQ section" />
-        <item itemvalue="Cucumber Java.Scenario: pls send help" />
-        <item itemvalue="Cucumber Java.Scenario: Positive #16 Fifth Enrollment Section - Success!" />
-        <item itemvalue="Cucumber Java.Scenario: Positive #15 Fourth Enrollment Section - Payment information" />
-        <item itemvalue="Cucumber Java.Scenario: Positive #14 Third Enrollment Section - Course options" />
+        <item itemvalue="Cucumber Java.Feature: example" />
+        <item itemvalue="Cucumber Java.Scenario: Negative #2 - Newsletter Email" />
+        <item itemvalue="Cucumber Java.Scenario: Positive #1 - Newsletter Email" />
       </list>
     </recent_temporary>
   </component>
@@ -230,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678783489979</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Finished FAQ scenario outline">
+      <created>1678801714821</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678801714821</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,7 +263,8 @@
     <MESSAGE value="Completed Third Enrollment Section" />
     <MESSAGE value="Almost completed Fourth Enrollment section" />
     <MESSAGE value="Working on Scenario Outline for FAQ section" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on Scenario Outline for FAQ section" />
+    <MESSAGE value="Finished FAQ scenario outline" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished FAQ scenario outline" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,12 +16,6 @@ public class Hybrid {
     @FindBy (xpath = "/html/body/a")
     private WebElement hybridReturnButton;
 
-    //initialize headers for all pages and assert for each element
-
-
-    //@FindBy(css = "")
-
-
     public String returnHybridHeaderText (){
         return hybridHeader.getText();
     }

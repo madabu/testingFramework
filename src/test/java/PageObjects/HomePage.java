@@ -7,8 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
-    //make negative test case for selenium section
-    //make then steps for each wrong email test
+
     @FindBy (xpath = "/html/body/section[2]/div/div/div/input")
     private WebElement emailField;
 
@@ -76,11 +75,6 @@ public class HomePage {
     private WebElement frequentlyAskedQuestions;
 
     public WebElement getFrequentlyAskedQuestions () {return frequentlyAskedQuestions;}
-
-//    @FindBy (id = "questions")
-//    private WebElement frequentlyAskedQuestions;
-
-//    public WebElement getFrequentlyAskedQuestions (){return frequentlyAskedQuestions;}
 
     @FindBy (xpath = "//button[@data-bs-target='#question-one']")
     private WebElement questionOneButton;

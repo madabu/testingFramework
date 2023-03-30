@@ -32,26 +32,19 @@ public class EnrollmentCourseOptions {
     @FindBy (css = "input#flexRadioButton2")
     private WebElement radioButton2;
 
-    //ST - Automation&Manual tester certificate radio button
+    //ST - Automation & Manual tester certificate radio button
     @FindBy (css = "input#flexRadioButton3")
     private WebElement radioButton3;
 
-    //ST - Automation & Manual tester certificate radio button
+    //ST - Security tester certificate radio button
     @FindBy (css = "input#flexRadioButton4")
     private WebElement radioButton4;
-    //ST - Security tester certificate radio button
-    @FindBy (css = "input#flexRadioButton5")
-    private WebElement radioButton5;
 
     //Next button from Third Section
     @FindBy (css = ".step-3 .next-btn")
     private WebElement nextButton;
 
-    public WebElement getNextButton2 () {
-        return nextButton;
-    }
     public void clickOnNextButton3 () {this.nextButton.click();}
-
 
     public EnrollmentCourseOptions (WebDriver driver) {
         PageFactory.initElements(driver, this);
