@@ -67,12 +67,21 @@ public class EnrollmentContactInfo {
         this.postCodeField.sendKeys(postCode);
     }
 
+    public void completeContactInformationFields () {
+        writeInContactInformationEmailField("test@gmail.com");
+        writeInPhoneField("0712345678");
+        writeInCountryField("Romania");
+        writeInCityField("Brasov");
+        writeInPostCodeField("123456");
+    }
+
     //Next Button from Second Section
     @FindBy (css = ".step-2 .next-btn")
     private WebElement nextButton;
     public void clickOnNextButton2 () {
         this.nextButton.click();
     }
+
 
     public EnrollmentContactInfo (WebDriver driver) {PageFactory.initElements(driver, this);}
 

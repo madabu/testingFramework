@@ -52,6 +52,14 @@ public class Enrollment {
         this.confirmPassword.sendKeys(confirmPassword);
     }
 
+    public void completePersonalInformationFields () {
+        writeInFirstNameField("Madalina");
+        writeInLastNameField("Albu");
+        writeInUsernameField("madaalbu");
+        writePassword("password1!");
+        writeToConfirmPassword("password1!");
+    }
+
     //Submit with Next button
     @FindBy (css = ".step-1 .next-btn")
     private WebElement nextButton;

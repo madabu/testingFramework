@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,7 +48,6 @@ public class EnrollmentPaymentInformation {
     @FindBy(css = ".step-4 .next-btn")
     private WebElement nextButton;
 
-    public void clickOnNextButton4 () {this.nextButton.click();}
 
     public void writeInCardHolderNameField (String cardHolderName) {this.cardHolderNameField.sendKeys(cardHolderName);}
 
@@ -64,6 +64,14 @@ public class EnrollmentPaymentInformation {
         Select select = new Select(dropdown2);
         select.selectByVisibleText(optionText2);
     }
+
+    public void completePaymentInformationFields () {
+        writeInCardHolderNameField("Madalina");
+        writeInCardNumberField("1234-5678-9123-4569");
+        writeInCVCField("123");
+    }
+
+    public void clickOnNextButton4 () {this.nextButton.click();}
 
     public EnrollmentPaymentInformation (WebDriver driver) {
         PageFactory.initElements(driver, this);

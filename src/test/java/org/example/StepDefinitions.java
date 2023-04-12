@@ -55,36 +55,35 @@ public class StepDefinitions {
 
 
     }
-    //Webscraping
 
     @Given ("I am on the homepage")
     public void iAmOnTheHomePage () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/index.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/index.html");
     }
 
     @Given("I am on the Virtual Page")
     public void iAmOnTheVirtualPage () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/virtual.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/virtual.html");
     }
 
     @Given("I am on the Hybrid page")
     public void iAmOnTheHybridPage () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/hybrid.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/hybrid.html");
     }
 
     @Given("I am on the In Person page")
     public void iAmOnTheInPersonPage (){
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/in_person.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/in_person.html");
     }
 
     @Given("I am on the Fundamentals page")
     public void iAmOnTheFundamentalsPage (){
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/fundamentals.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/fundamentals.html");
     }
 
     @Given("I am on the Frequently Asked Questions section of the Home page")
     public void iAmOnTheFrequentlyAskedQuestionsSection () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/index.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/index.html");
         homePage.clickOnQuestionsFromNavBar();
 
         Utils.scrollToElement(driver,homePage.getFrequentlyAskedQuestions());
@@ -96,10 +95,9 @@ public class StepDefinitions {
     }
 
 
-    //??
     @Given("I am on the First section of the Enrollment process")
     public void iAmOnTheFirstSectionOfTheEnrollmentProccess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/enrollment.html");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -109,71 +107,42 @@ public class StepDefinitions {
     }
     @Given("I am on the Second section of the Enrollment process")
     public void iAmOnTheSecondSectionOfTheEnrollmentProcess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        enrollment.writeInFirstNameField("Madalina");
-        enrollment.writeInLastNameField("Albu");
-        enrollment.writeInUsernameField("madaalbu");
-        enrollment.writePassword("password1!");
-        enrollment.writeToConfirmPassword("password1!");
-
+        enrollment.completePersonalInformationFields();
         enrollment.clickOnNextButton();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
-
         Assert.assertEquals("Contact information",enrollmentContactInfo.getContactInformationHeader().getText());
     }
     @Given("I am on the Third section of the Enrollment process")
     public void iAmOnTheThirdSectionOfTheEnrollmentProcess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        enrollment.writeInFirstNameField("Madalina");
-        enrollment.writeInLastNameField("Albu");
-        enrollment.writeInUsernameField("madaalbu");
-        enrollment.writePassword("password1!");
-        enrollment.writeToConfirmPassword("password1!");
-
+        enrollment.completePersonalInformationFields();
         enrollment.clickOnNextButton();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
-
-        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
-        enrollmentContactInfo.writeInPhoneField("0712345678");
-        enrollmentContactInfo.writeInCountryField("Romania");
-        enrollmentContactInfo.writeInCityField("Brasov");
-        enrollmentContactInfo.writeInPostCodeField("123456");
-
+        enrollmentContactInfo.completeContactInformationFields();
         enrollmentContactInfo.clickOnNextButton2();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
-
         Assert.assertEquals("Course options",enrollmentCourseOptions.getCourseOptionsHeader().getText());
 
     }
 
     @Given("I am on the Fourth section of the Enrollment process")
     public void iAmOnTheFourthSectionOfTheEnrollmentProcess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        enrollment.writeInFirstNameField("Madalina");
-        enrollment.writeInLastNameField("Albu");
-        enrollment.writeInUsernameField("madaalbu");
-        enrollment.writePassword("password1!");
-        enrollment.writeToConfirmPassword("password1!");
-
+        enrollment.completePersonalInformationFields();
         enrollment.clickOnNextButton();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
-
-        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
-        enrollmentContactInfo.writeInPhoneField("0712345678");
-        enrollmentContactInfo.writeInCountryField("Romania");
-        enrollmentContactInfo.writeInCityField("Brasov");
-        enrollmentContactInfo.writeInPostCodeField("123456");
-
+        enrollmentContactInfo.completeContactInformationFields();
         enrollmentContactInfo.clickOnNextButton2();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
@@ -182,43 +151,27 @@ public class StepDefinitions {
         enrollmentCourseOptions.clickOnNextButton3();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentPaymentInformation.getPaymentInformationHeader()));
-
         Assert.assertEquals("Payment information",enrollmentPaymentInformation.getPaymentInformationHeader().getText());
     }
 
     @Given("I am on the Fifth and last section of the Enrollment process")
     public void iAmOnTheFifthSectionOfTheEnrollmentProcess () {
-        driver.get("file:///C:/Users/Madalina/Desktop/Trello%20exercise/Testing-Env/routes/enrollment.html");
+        driver.get("file:///C:/Users/Madalina/Desktop/Env/Testing-Env/routes/enrollment.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        enrollment.writeInFirstNameField("Madalina");
-        enrollment.writeInLastNameField("Albu");
-        enrollment.writeInUsernameField("madaalbu");
-        enrollment.writePassword("password1!");
-        enrollment.writeToConfirmPassword("password1!");
-
+        enrollment.completePersonalInformationFields();
         enrollment.clickOnNextButton();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentContactInfo.getContactInformationHeader()));
-
-        enrollmentContactInfo.writeInContactInformationEmailField("test@gmail.com");
-        enrollmentContactInfo.writeInPhoneField("0712345678");
-        enrollmentContactInfo.writeInCountryField("Romania");
-        enrollmentContactInfo.writeInCityField("Brasov");
-        enrollmentContactInfo.writeInPostCodeField("123456");
-
+        enrollmentContactInfo.completeContactInformationFields();
         enrollmentContactInfo.clickOnNextButton2();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentCourseOptions.getCourseOptionsHeader()));
-
         enrollmentCourseOptions.clickOnFirstRadioButton1();
         enrollmentCourseOptions.clickOnNextButton3();
 
         wait.until(ExpectedConditions.visibilityOf(enrollmentPaymentInformation.getPaymentInformationHeader()));
-
-        enrollmentPaymentInformation.writeInCardHolderNameField("Madalina");
-        enrollmentPaymentInformation.writeInCardNumberField("1234-5678-9123-4569");
-        enrollmentPaymentInformation.writeInCVCField("123");
+        enrollmentPaymentInformation.completePaymentInformationFields();
         Select select = new Select(driver.findElement(By.cssSelector("select#month.list-dt[name='expmonth']")));
         select.selectByVisibleText("March");
 
